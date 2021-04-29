@@ -7,7 +7,7 @@ import org.springframework.web.reactive.function.server.ServerRequest;
 
 import java.util.Map;
 
-//@Component
+@Component
 public class GlobalErrorAttributes extends DefaultErrorAttributes{
 
   private HttpStatus status = HttpStatus.BAD_REQUEST;

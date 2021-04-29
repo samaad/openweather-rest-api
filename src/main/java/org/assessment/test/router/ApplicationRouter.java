@@ -22,8 +22,8 @@ public class ApplicationRouter {
 
     @Bean
     public RouterFunction<ServerResponse> mainFunction(){
-        final String CITY_COUNTRY = "/cityCountry/{q}";
-        final String LAT_LONG = "/latLng/{lat}/{lon}";
+        final String CITY_COUNTRY = "/citycountry/{q}";
+        final String LAT_LONG = "/latlon/{lat}/{lon}";
 
         return nest(accept(MediaType.APPLICATION_JSON),
                 route(GET(CITY_COUNTRY), weaterHandler::getWeatherByCityAndCountry)
