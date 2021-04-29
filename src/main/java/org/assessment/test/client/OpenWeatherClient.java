@@ -13,6 +13,12 @@ import java.util.Optional;
 public interface OpenWeatherClient {
 
     @GetMapping()
-    Optional<CityCounterResponse> getWeatherByCityCountry(@RequestParam("q") String q, @RequestParam("appid") String appid);
+    Optional<CityCounterResponse> getWeatherByCityCountry(@RequestParam("q") String q,
+                                                          @RequestParam("appid") String appid);
+
+    @GetMapping()
+    Optional<CityCounterResponse> getWeatherByLatLng(@RequestParam("lat") String lat,
+                                                     @RequestParam("lon") String lon,
+                                                     @RequestParam("appid") String appid);
 
 }

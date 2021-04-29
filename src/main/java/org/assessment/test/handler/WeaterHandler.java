@@ -41,7 +41,13 @@ public class WeaterHandler {
     }
 
     public Mono<ServerResponse> getWeatherLatLng(final ServerRequest serverRequest) {
-        return ServerResponse.ok()
-                .contentType(MediaType.APPLICATION_JSON).build();
+        String lat = serverRequest.pathVariable("lat");
+        String lon = serverRequest.pathVariable("lon");
+        Mono<ServerResponse> notFound = ServerResponse.notFound().build();
+        Optional<CityCounterResponse> cityMono = openWeatherClient.getWeatherByLatLng(lat, lon, API_KEY);
+        return Mono.just(cityMono).flatMap(user -> ServerResponse.ok()
+                .contentType(APPLICATION_JSON)
+                .body(BodyInserters.fromValue(user)))
+                .switchIfEmpty(notFound);
     }
 }
